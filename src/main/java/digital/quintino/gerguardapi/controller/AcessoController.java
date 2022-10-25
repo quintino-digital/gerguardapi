@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import digital.quintino.gerguardapi.domain.AcessoDomain;
+import digital.quintino.gerguardapi.dto.AcessoRequestDTO;
 import digital.quintino.gerguardapi.service.AcessoService;
 
 @RestController
@@ -26,8 +27,8 @@ public class AcessoController {
 	private AcessoService acessoService;
 	
 	@PostMapping
-	public AcessoDomain saveOne(@RequestBody AcessoDomain acessoDomain) {
-		return acessoService.saveOne(acessoDomain);
+	public AcessoDomain saveOne(@RequestBody AcessoRequestDTO acessoRequestDTO) {
+		return acessoService.saveOne(acessoRequestDTO);
 	}
 	
 	@GetMapping
@@ -45,12 +46,12 @@ public class AcessoController {
 	}
 	
 	@PutMapping("/{codigoAcesso}")
-	public ResponseEntity<Object> updateOne(@PathVariable(value = "codigoAcesso") Long codigo, @RequestBody AcessoDomain acessoDomain) {
+	public ResponseEntity<Object> updateOne(@PathVariable(value = "codigoAcesso") Long codigo, @RequestBody AcessoRequestDTO acessoRequestDTO) {
 		Optional<AcessoDomain> acessoDomainOptional = this.acessoService.findOne(codigo);
 		if(!acessoDomainOptional.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Acesso não Encontrado!");
 		}
-		return ResponseEntity.ok(this.acessoService.updateOne(codigo, acessoDomain));
+		return ResponseEntity.ok(this.acessoService.updateOne(codigo, acessoRequestDTO));
 	}
 	
 	@DeleteMapping("/{codigoAcesso}")
