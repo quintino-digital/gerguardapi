@@ -34,6 +34,10 @@ public class AcessoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.acessoService.saveOne(acessoRequestDTO));
 	}
 	
+	/**
+	 * TODO -- Implementar Paginacao nesse metodo
+	 * @return
+	 */
 	@GetMapping
 	public List<AcessoDomain> findAll() {
 		return this.acessoService.findAll();
