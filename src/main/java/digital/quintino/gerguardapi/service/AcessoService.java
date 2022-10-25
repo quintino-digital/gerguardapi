@@ -66,6 +66,11 @@ public class AcessoService {
 		this.acessoInterfaceRepository.deleteById(codigo);
 	}
 	
+	/**
+	 * TODO -- Criar consulta para realizar essa validação
+	 * @param acessoRequestDTO
+	 * @return
+	 */
 	public Boolean isAcessoDuplicado(AcessoRequestDTO acessoRequestDTO) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		for(AcessoDomain acessoDomain : this.findAll()) {
