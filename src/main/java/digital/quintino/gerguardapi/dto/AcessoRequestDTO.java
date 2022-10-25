@@ -2,9 +2,13 @@ package digital.quintino.gerguardapi.dto;
 
 import java.util.Date;
 
+import digital.quintino.gerguardapi.domain.CategoriaAcessoDomain;
+
 public class AcessoRequestDTO {
 	
 	private Long codigo;
+	
+	private CategoriaAcessoDomain categoriaAcessoDomain;
 	
 	private Long idPessoa;
 	
@@ -30,6 +34,14 @@ public class AcessoRequestDTO {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public CategoriaAcessoDomain getCategoriaAcessoDomain() {
+		return categoriaAcessoDomain;
+	}
+
+	public void setCategoriaAcessoDomain(CategoriaAcessoDomain categoriaAcessoDomain) {
+		this.categoriaAcessoDomain = categoriaAcessoDomain;
 	}
 
 	public Long getIdPessoa() {

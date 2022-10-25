@@ -27,8 +27,11 @@ public class AcessoController {
 	private AcessoService acessoService;
 	
 	@PostMapping
-	public AcessoDomain saveOne(@RequestBody AcessoRequestDTO acessoRequestDTO) {
-		return acessoService.saveOne(acessoRequestDTO);
+	public ResponseEntity<Object> saveOne(@RequestBody AcessoRequestDTO acessoRequestDTO) {
+		if(this.acessoService.isAcessoDuplicado(acessoRequestDTO)) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("Esse Objeto já está cadastrado!");
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(this.acessoService.saveOne(acessoRequestDTO));
 	}
 	
 	@GetMapping
