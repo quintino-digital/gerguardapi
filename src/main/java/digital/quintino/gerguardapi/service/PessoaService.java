@@ -5,17 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import digital.quintino.gerguardapi.client.PessoaClient;
 import digital.quintino.gerguardapi.dto.PessoaResponseDTO;
+import digital.quintino.gerguardapi.repository.PessoaInterfaceRepository;
 
 @Service
 public class PessoaService {
 	
 	@Autowired
-	private PessoaClient pessoaClient;
+	private PessoaInterfaceRepository pessoaInterfaceRepository;
 	
 	public List<PessoaResponseDTO> findAll() {
-		return pessoaClient.findAll();
+		return pessoaInterfaceRepository.findAll();
 	}
 
 }
