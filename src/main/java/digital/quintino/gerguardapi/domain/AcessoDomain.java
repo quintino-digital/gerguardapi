@@ -8,14 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/*
-		TB_ACESSO (
-            ID_CATEGORIA
-            FORMA_RECUPERACAO -- SMS, WHASAPP, LIGACAO, EMAIL
-        );
-*/
 @Entity
 @Table(name = "TB_ACESSO")
 public class AcessoDomain implements Serializable {
@@ -26,6 +22,10 @@ public class AcessoDomain implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CODIGO")
 	private Long codigo;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_CATEGORIA_ACESSO")
+	private CategoriaAcessoDomain categoriaAcessoDomain;
 	
 	@Column(name = "ID_PESSOA")
 	private Long idPessoa;
@@ -59,6 +59,14 @@ public class AcessoDomain implements Serializable {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public CategoriaAcessoDomain getCategoriaAcessoDomain() {
+		return categoriaAcessoDomain;
+	}
+
+	public void setCategoriaAcessoDomain(CategoriaAcessoDomain categoriaAcessoDomain) {
+		this.categoriaAcessoDomain = categoriaAcessoDomain;
 	}
 
 	public Long getIdPessoa() {

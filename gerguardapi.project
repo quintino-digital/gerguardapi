@@ -5,3 +5,5 @@
 	GERGUARDAPI25102022151958FEATURE
 	
 		- Cadastrar nova Pessoa no Serviço de GERPESSAPI
+		- Recuperar Pessoas Jurídicas do GERPESSAPI
+		- Implementar funcionalidade de Categoria Acesso

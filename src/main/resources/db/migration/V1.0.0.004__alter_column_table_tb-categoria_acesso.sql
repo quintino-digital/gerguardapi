@@ -1,0 +1,1 @@
+create unique index index_tb_acesso_unique on tb_categoria_acesso(descricao);
