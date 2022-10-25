@@ -22,7 +22,6 @@ public class AcessoService {
 	
 	/**
 	 * TODO -- O sistema deve calcular a data de vencimento de um acesso em três meses contada a partir da data de Cadastro
-	 * TODO -- Validar objeto duplicado
 	 * @param acessoRequestDTO
 	 * @return
 	 */
