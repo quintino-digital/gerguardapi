@@ -3,6 +3,7 @@ package digital.quintino.gerguardapi.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ import digital.quintino.gerguardapi.service.AcessoService;
 @RestController
 @RequestMapping("acesso")
 public class AcessoController {
+	
+	private static final Logger LOGGER = Logger.getLogger(AcessoController.class);
 	
 	@Autowired
 	private AcessoService acessoService;
@@ -46,6 +49,7 @@ public class AcessoController {
 	
 	@GetMapping("/{codigoAcesso}")
 	public ResponseEntity<Object> findOne(@PathVariable(value = "codigoAcesso") Long codigo) {
+		LOGGER.info("ENDPOINT: <URL>/acesso/findOne");
 		return ResponseEntity.ok(this.acessoService.findOne(codigo).orElseThrow(() -> new NotFoundImplementationException("Acesso não Encontrado!")));
 	}
 	
