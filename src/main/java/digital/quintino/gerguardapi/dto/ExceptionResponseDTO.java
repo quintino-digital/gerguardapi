@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExceptionResponseDTO {
 	
+	@JsonProperty("API")
+	private String api;
+	
 	@JsonProperty("Erro HTTP")
 	private int erro;
 	
@@ -14,6 +17,14 @@ public class ExceptionResponseDTO {
 	private String data;
 	
 	public ExceptionResponseDTO() { }
+
+	public String getApi() {
+		return api;
+	}
+
+	public void setApi(String api) {
+		this.api = api;
+	}
 
 	public int getErro() {
 		return erro;

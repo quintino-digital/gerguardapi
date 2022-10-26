@@ -17,6 +17,7 @@ public class ControllerException {
 	@ExceptionHandler(NotFoundImplementationException.class)
 	public ResponseEntity<ExceptionResponseDTO> notFoundImplementationException(NotFoundImplementationException notFoundImplementationException, WebRequest webRequest) {
 		ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO();
+			exceptionResponseDTO.setApi("GERGUARDAPI - Gerenciador de Acessos");
 			exceptionResponseDTO.setData(DateUtility.formatarData(new Date()));
 			exceptionResponseDTO.setErro(HttpStatus.NOT_FOUND.value());
 			exceptionResponseDTO.setMensagem(notFoundImplementationException.getMessage());
