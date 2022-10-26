@@ -22,7 +22,7 @@ import digital.quintino.gerguardapi.exception.NotFoundImplementationException;
 import digital.quintino.gerguardapi.service.AcessoService;
 
 @RestController
-@RequestMapping("acesso")
+@RequestMapping("/v1/acesso")
 public class AcessoController {
 	
 	private static final Logger LOGGER = Logger.getLogger(AcessoController.class);
