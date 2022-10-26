@@ -7,3 +7,5 @@
 		- Cadastrar nova Pessoa no Serviço de GERPESSAPI
 		- Recuperar Pessoas Jurídicas do GERPESSAPI
 		- Implementar funcionalidade de Categoria Acesso
+		- Implementar pesquisa pelo E-mail
+		- Implementar Exceptions Global para os endpoints

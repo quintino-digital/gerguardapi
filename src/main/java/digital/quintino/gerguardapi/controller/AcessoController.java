@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import digital.quintino.gerguardapi.domain.AcessoDomain;
 import digital.quintino.gerguardapi.dto.AcessoRequestDTO;
+import digital.quintino.gerguardapi.exception.NotFoundImplementationException;
 import digital.quintino.gerguardapi.service.AcessoService;
 
 @RestController
@@ -45,11 +46,7 @@ public class AcessoController {
 	
 	@GetMapping("/{codigoAcesso}")
 	public ResponseEntity<Object> findOne(@PathVariable(value = "codigoAcesso") Long codigo) {
-		Optional<AcessoDomain> acessoDomain = this.acessoService.findOne(codigo);
-		if(!acessoDomain.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Acesso não Encontrado!");
-		}
-		return ResponseEntity.ok(acessoDomain);
+		return ResponseEntity.ok(this.acessoService.findOne(codigo).orElseThrow(() -> new NotFoundImplementationException("Acesso não Encontrado!")));
 	}
 	
 	@PutMapping("/{codigoAcesso}")
