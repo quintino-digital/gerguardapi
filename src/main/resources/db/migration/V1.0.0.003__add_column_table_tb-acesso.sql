@@ -1,0 +1,1 @@
+alter table tb_acesso add column id_categoria_acesso integer;
