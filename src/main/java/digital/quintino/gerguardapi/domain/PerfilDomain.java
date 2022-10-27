@@ -1,6 +1,8 @@
 package digital.quintino.gerguardapi.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -16,8 +19,8 @@ import org.springframework.security.core.GrantedAuthority;
 import digital.quintino.gerguardapi.enumeration.TipoPerfilUsuarioSistemaEnumeration;
 
 @Entity
-@Table(name = "TB_PERFIL_USUARIO_SISTEMA")
-public class PerfilUsuarioSistemaDomain implements GrantedAuthority, Serializable {
+@Table(name = "TB_PERFIL")
+public class PerfilDomain implements GrantedAuthority, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -30,7 +33,10 @@ public class PerfilUsuarioSistemaDomain implements GrantedAuthority, Serializabl
 	@Column(name = "DESCRICAO_PAPEL_USUARIO_ACESSO", nullable = false)
 	private TipoPerfilUsuarioSistemaEnumeration papelUsuarioAcessoEnumeration;
 	
-	public PerfilUsuarioSistemaDomain() { }
+	@OneToMany(mappedBy = "perfilDomain")
+	private List<UsuarioPerfilDomain> usuarioPerfilDomainList = new ArrayList<>();
+	
+	public PerfilDomain() { }
 	
 	@Override
 	public String getAuthority() {
@@ -43,6 +49,14 @@ public class PerfilUsuarioSistemaDomain implements GrantedAuthority, Serializabl
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+
+	public List<UsuarioPerfilDomain> getUsuarioPerfilDomainList() {
+		return usuarioPerfilDomainList;
+	}
+
+	public void setUsuarioPerfilDomainList(List<UsuarioPerfilDomain> usuarioPerfilDomainList) {
+		this.usuarioPerfilDomainList = usuarioPerfilDomainList;
 	}
 
 	public TipoPerfilUsuarioSistemaEnumeration getPapelUsuarioAcessoEnumeration() {

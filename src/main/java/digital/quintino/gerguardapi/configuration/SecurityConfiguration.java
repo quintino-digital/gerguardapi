@@ -9,14 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import digital.quintino.gerguardapi.service.UsuarioAcessoService;
+import digital.quintino.gerguardapi.service.UsuarioService;
 
 @SuppressWarnings("deprecation")
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private UsuarioAcessoService usuarioAcessoService;
+	private UsuarioService usuarioAcessoService;
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
