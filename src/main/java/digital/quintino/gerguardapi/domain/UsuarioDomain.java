@@ -7,13 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,16 +40,19 @@ public class UsuarioDomain implements UserDetails, Serializable {
 	
 	@Column(name = "IS_ATIVO", nullable = false)
 	private Boolean isAtivo;
-	
-	@OneToMany(mappedBy = "usuarioDomain")
-	private List<UsuarioPerfilDomain> usuarioPerfilDomainList = new ArrayList<>();
+
+	@ManyToMany
+	@JoinTable(name = "TB_USUARIO_PERFIL",
+		joinColumns = @JoinColumn(name = "ID_USUARIO"),
+		inverseJoinColumns = @JoinColumn(name = "ID_PERFIL"))
+	private List<PerfilDomain> perfilDomainList = new ArrayList<>();
 	
 	public UsuarioDomain() { }
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return (Collection<? extends GrantedAuthority>) this.usuarioPerfilDomainList;
+		return this.perfilDomainList;
 	}
 
 	@Override
@@ -96,12 +93,20 @@ public class UsuarioDomain implements UserDetails, Serializable {
 		this.codigo = codigo;
 	}
 
-	public List<UsuarioPerfilDomain> getUsuarioPerfilDomainList() {
-		return usuarioPerfilDomainList;
+	public Boolean getAtivo() {
+		return isAtivo;
 	}
 
-	public void setUsuarioPerfilDomainList(List<UsuarioPerfilDomain> usuarioPerfilDomainList) {
-		this.usuarioPerfilDomainList = usuarioPerfilDomainList;
+	public void setAtivo(Boolean ativo) {
+		isAtivo = ativo;
+	}
+
+	public List<PerfilDomain> getPerfilDomainList() {
+		return perfilDomainList;
+	}
+
+	public void setPerfilDomainList(List<PerfilDomain> perfilDomainList) {
+		this.perfilDomainList = perfilDomainList;
 	}
 
 	public String getIdentificador() {

@@ -33,9 +33,6 @@ public class PerfilDomain implements GrantedAuthority, Serializable {
 	@Column(name = "DESCRICAO_PAPEL_USUARIO_ACESSO", nullable = false)
 	private TipoPerfilUsuarioSistemaEnumeration papelUsuarioAcessoEnumeration;
 	
-	@OneToMany(mappedBy = "perfilDomain")
-	private List<UsuarioPerfilDomain> usuarioPerfilDomainList = new ArrayList<>();
-	
 	public PerfilDomain() { }
 	
 	@Override
@@ -49,14 +46,6 @@ public class PerfilDomain implements GrantedAuthority, Serializable {
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
-	}
-
-	public List<UsuarioPerfilDomain> getUsuarioPerfilDomainList() {
-		return usuarioPerfilDomainList;
-	}
-
-	public void setUsuarioPerfilDomainList(List<UsuarioPerfilDomain> usuarioPerfilDomainList) {
-		this.usuarioPerfilDomainList = usuarioPerfilDomainList;
 	}
 
 	public TipoPerfilUsuarioSistemaEnumeration getPapelUsuarioAcessoEnumeration() {
