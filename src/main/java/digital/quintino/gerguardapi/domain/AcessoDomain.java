@@ -28,7 +28,7 @@ public class AcessoDomain implements UserDetails, Serializable {
 	private Long codigo;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CATEGORIA_ACESSO")
+	@JoinColumn(name = "ID_CATEGORIA_ACESSO", nullable = false)
 	private CategoriaAcessoDomain categoriaAcessoDomain;
 	
 	@Column(name = "ID_PESSOA")
