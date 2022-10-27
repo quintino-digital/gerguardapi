@@ -9,3 +9,48 @@
 		- Implementar funcionalidade de Categoria Acesso
 		- Implementar pesquisa pelo E-mail
 		- Implementar Exceptions Global para os endpoints
+		
+	GERGUARDAPI261002022105955FEATURE
+	
+		- Implementar Spring Security
+		
+### Scripts
+
+	drop table if exists flyway_schema_history cascade;
+	drop table if exists tb_acesso cascade;
+	drop table if exists tb_categoria_acesso cascade;
+	drop table if exists tb_usuario cascade;
+	drop table if exists tb_perfil cascade;
+	drop table if exists tb_usuario_perfil cascade;
+	
+	delete from flyway_schema_history cascade;
+	delete from tb_acesso cascade;
+	delete from tb_categoria_acesso cascade;
+	delete from tb_usuario cascade;
+	delete from tb_perfil cascade;
+	delete from tb_usuario_perfil cascade;
+	
+	select * from flyway_schema_history;
+	select * from tb_acesso;
+	select * from tb_categoria_acesso;
+	select * from tb_usuario;
+	select * from tb_perfil;
+	select * from tb_usuario_perfil;
+	
+	insert into tb_usuario_perfil (id_usuario, id_perfil) values (
+	    '15b0fff1-8808-4e48-a1e9-ebb1b4a33462',
+	    1
+	);
+	
+	{
+		"idPessoa": "1",
+		"categoriaAcessoDomain": {
+			"codigo": 1
+		},
+		"url": "https://www.youtube.com/",
+		"identificador": "desenvolvimento@gmail.com",
+		"chave": "senha_padrao8",
+		"dataVencimento": "",
+		"observacao": "",
+		"isAtivo": true
+	}

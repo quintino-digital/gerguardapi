@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,7 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(DateUtility.formatarData(new Date()) + " - GERGUARDAPI - Gerenciador de Acessos (Versão 1.0.0)...");
+		System.out.println(DateUtility.formatarData(new Date()) + " - GERGUARDAPI - Gerenciador de Acessos (Versão 1.0.0) [" + new BCryptPasswordEncoder().encode("producao") + "]");
 	}
 
 }
