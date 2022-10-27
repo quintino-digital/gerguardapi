@@ -14,6 +14,11 @@
 	
 		- Implementar Spring Security
 		
+	GERGUARDAPI261002022192250FEATURE
+	
+		- Atualizar configuração do Spring Security
+		
+		
 ### Scripts
 
 	drop table if exists flyway_schema_history cascade;
