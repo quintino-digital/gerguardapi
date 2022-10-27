@@ -3,39 +3,31 @@ package digital.quintino.gerguardapi.domain;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+/**
+ * Responsável por gerenciar os Usuários Logados e Autorizados da GERGUARDAPI
+ */
 @Entity
-@Table(name = "TB_ACESSO")
-public class AcessoDomain implements UserDetails, Serializable {
+@Table(name = "TB_USUARIO_ACESSO")
+public class UsuarioAcessoDomain implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CODIGO")
-	private Long codigo;
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_CATEGORIA_ACESSO")
-	private CategoriaAcessoDomain categoriaAcessoDomain;
-	
-	@Column(name = "ID_PESSOA")
-	private Long idPessoa;
-	
-	@Column(name = "URL", nullable = false)
-	private String url;
+	private UUID codigo;
 	
 	@Column(name = "IDENTIFICADOR", nullable = false)
 	private String identificador;
@@ -43,19 +35,16 @@ public class AcessoDomain implements UserDetails, Serializable {
 	@Column(name = "CHAVE", nullable = false)
 	private String chave;
 	
-	@Column(name = "DATA_CADASTRO", nullable = false)
-	private Date dataCadastro;
+	@Column(name = "RESPONSAVEL_ATUALIZACAO", nullable = false)
+	private String responsavelAtualizacao;
 	
-	@Column(name = "DATA_VENCIMENTO", nullable = false)
-	private Date dataVencimento;
-	
-	@Column(name = "OBSERVACAO")
-	private String observacao;
+	@Column(name = "DATA_ATUALIZACAO", nullable = false)
+	private Date dataAtualizacao;
 	
 	@Column(name = "IS_ATIVO", nullable = false)
 	private Boolean isAtivo;
 	
-	public AcessoDomain() { }
+	public UsuarioAcessoDomain() { }
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -92,36 +81,12 @@ public class AcessoDomain implements UserDetails, Serializable {
 		return this.isAtivo;
 	}
 
-	public Long getCodigo() {
+	public UUID getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
+	public void setCodigo(UUID codigo) {
 		this.codigo = codigo;
-	}
-
-	public CategoriaAcessoDomain getCategoriaAcessoDomain() {
-		return categoriaAcessoDomain;
-	}
-
-	public void setCategoriaAcessoDomain(CategoriaAcessoDomain categoriaAcessoDomain) {
-		this.categoriaAcessoDomain = categoriaAcessoDomain;
-	}
-
-	public Long getIdPessoa() {
-		return idPessoa;
-	}
-
-	public void setIdPessoa(Long idPessoa) {
-		this.idPessoa = idPessoa;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public String getIdentificador() {
@@ -140,28 +105,20 @@ public class AcessoDomain implements UserDetails, Serializable {
 		this.chave = chave;
 	}
 
-	public Date getDataCadastro() {
-		return dataCadastro;
+	public Date getDataAtualizacao() {
+		return dataAtualizacao;
 	}
 
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
+	public void setDataAtualizacao(Date dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public Date getDataVencimento() {
-		return dataVencimento;
+	public String getResponsavelAtualizacao() {
+		return responsavelAtualizacao;
 	}
 
-	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setResponsavelAtualizacao(String responsavelAtualizacao) {
+		this.responsavelAtualizacao = responsavelAtualizacao;
 	}
 
 	public Boolean getIsAtivo() {
