@@ -19,8 +19,8 @@ import org.springframework.security.core.userdetails.UserDetails;
  * Responsável por gerenciar os Usuários Logados e Autorizados da GERGUARDAPI
  */
 @Entity
-@Table(name = "TB_USUARIO_ACESSO")
-public class UsuarioAcessoDomain implements UserDetails, Serializable {
+@Table(name = "TB_USUARIO_SISTEMA")
+public class UsuarioSistemaDomain implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -44,7 +44,7 @@ public class UsuarioAcessoDomain implements UserDetails, Serializable {
 	@Column(name = "IS_ATIVO", nullable = false)
 	private Boolean isAtivo;
 	
-	public UsuarioAcessoDomain() { }
+	public UsuarioSistemaDomain() { }
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
