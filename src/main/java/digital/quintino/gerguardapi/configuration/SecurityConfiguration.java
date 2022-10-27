@@ -10,7 +10,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.httpBasic().and().authorizeHttpRequests().anyRequest().permitAll();
+		httpSecurity.httpBasic().and().authorizeHttpRequests().anyRequest().authenticated();
 	}
 
 }
