@@ -27,7 +27,7 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(DateUtility.formatarData(new Date()) + " - GERGUARDAPI - Gerenciador de Acessos (Versão 1.0.0)...");
+		System.out.println(DateUtility.formatarData(new Date()) + " - GERGUARDAPI - Gerenciador de Acessos (Versão 1.0.0)");
 	}
 
 }
