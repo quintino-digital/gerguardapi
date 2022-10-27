@@ -16,11 +16,3 @@ insert into tb_usuario_acesso (codigo, identificador, chave, responsavel_atualiz
     'GERGUARDAPI',
     now()
 );
-
-insert into tb_usuario_acesso (codigo, identificador, chave, responsavel_atualizacao, data_atualizacao) values (
-    '76da441f-f44a-4a50-b21e-5ee6bc5a9b95',
-    'producao',
-    '$2a$10$nhL4fuzh8puNAaoJYI/fbOPYX6.BDKpxamJts17uu2C4Qwq1DBrZy',
-    'GERGUARDAPI',
-    now()
-);
