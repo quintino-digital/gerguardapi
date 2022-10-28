@@ -51,12 +51,14 @@ public class AcessoController {
 	}
 	
 	@GetMapping("/{codigoAcesso}")
+	@PreAuthorize("hasRole('ROLE_ADMIN', 'ROLE_USER')")
 	public ResponseEntity<Object> findOne(@PathVariable(value = "codigoAcesso") Long codigo) {
 		LOGGER.info("ENDPOINT: <URL>/acesso/findOne");
 		return ResponseEntity.ok(this.acessoService.findOne(codigo).orElseThrow(() -> new NotFoundImplementationException("Acesso não Encontrado!")));
 	}
 	
 	@PutMapping("/{codigoAcesso}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Object> updateOne(@PathVariable(value = "codigoAcesso") Long codigo, @RequestBody AcessoRequestDTO acessoRequestDTO) {
 		Optional<AcessoDomain> acessoDomainOptional = this.acessoService.findOne(codigo);
 		if(!acessoDomainOptional.isPresent()) {
