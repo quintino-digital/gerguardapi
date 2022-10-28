@@ -1,5 +1,6 @@
 package digital.quintino.gerguardapi.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import digital.quintino.gerguardapi.domain.AcessoDomain;
 import digital.quintino.gerguardapi.dto.AcessoRequestDTO;
+import digital.quintino.gerguardapi.dto.AcessoResponseDTO;
 import digital.quintino.gerguardapi.repository.AcessoInterfaceRepository;
 
 @Service
@@ -26,13 +28,16 @@ public class AcessoService {
 	 * @return
 	 */
 	@Transactional
-	public AcessoDomain saveOne(AcessoRequestDTO acessoRequestDTO) {
+	public AcessoResponseDTO saveOne(AcessoRequestDTO acessoRequestDTO) {
 		AcessoDomain acessoDomain = new AcessoDomain();
+		AcessoResponseDTO acessoResponseDTO = new AcessoResponseDTO();
 		BeanUtils.copyProperties(acessoRequestDTO, acessoDomain);
 			acessoDomain.setChave(encriptarChaveAcesso(acessoRequestDTO.getChave()));
 			acessoDomain.setDataCadastro(new Date());
 		if(!this.isAcessoDuplicado(acessoRequestDTO)) {
-			return this.acessoInterfaceRepository.save(acessoDomain);
+			acessoDomain = this.acessoInterfaceRepository.save(acessoDomain);
+			BeanUtils.copyProperties(acessoDomain, acessoResponseDTO);
+			return acessoResponseDTO;
 		} else {
 			// TODO -- Encaminhar Excecao de Objeto Duplicado
 		}
@@ -45,8 +50,14 @@ public class AcessoService {
 		}
 	}
 
-	public List<AcessoDomain> findAll() {
-		return this.acessoInterfaceRepository.findAll();
+	public List<AcessoResponseDTO> findAll() {
+		List<AcessoResponseDTO> acessoResponseDTOList = new ArrayList<>();
+		for(AcessoDomain acessoDomain : this.acessoInterfaceRepository.findAll()) {
+			AcessoResponseDTO acessoRequestDTO = new AcessoResponseDTO();
+			BeanUtils.copyProperties(acessoDomain, acessoRequestDTO);
+			acessoResponseDTOList.add(acessoRequestDTO);
+		}
+		return acessoResponseDTOList;
 	}
 	
 	@Transactional
@@ -73,11 +84,11 @@ public class AcessoService {
 	 */
 	public Boolean isAcessoDuplicado(AcessoRequestDTO acessoRequestDTO) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		for(AcessoDomain acessoDomain : this.findAll()) {
-			if(bCryptPasswordEncoder.matches(acessoRequestDTO.getChave(), acessoDomain.getChave()) &&
-					acessoDomain.getIdentificador().equals(acessoRequestDTO.getIdentificador()) &&
-						acessoDomain.getUrl().equals(acessoRequestDTO.getUrl()) &&
-							acessoDomain.getDataVencimento() == acessoRequestDTO.getDataVencimento()) {
+		for(AcessoResponseDTO acessoResponseDTO : this.findAll()) {
+			if(bCryptPasswordEncoder.matches(acessoRequestDTO.getChave(), acessoResponseDTO.getChave()) &&
+					acessoResponseDTO.getIdentificador().equals(acessoRequestDTO.getIdentificador()) &&
+						acessoResponseDTO.getUrl().equals(acessoRequestDTO.getUrl()) &&
+							acessoResponseDTO.getDataVencimento() == acessoRequestDTO.getDataVencimento()) {
 				return true;
 			}
 		}

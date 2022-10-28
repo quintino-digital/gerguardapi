@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import digital.quintino.gerguardapi.domain.AcessoDomain;
 import digital.quintino.gerguardapi.dto.AcessoRequestDTO;
+import digital.quintino.gerguardapi.dto.AcessoResponseDTO;
 import digital.quintino.gerguardapi.exception.NotFoundImplementationException;
 import digital.quintino.gerguardapi.service.AcessoService;
 
@@ -46,7 +47,7 @@ public class AcessoController {
 	 */
 	@GetMapping
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public ResponseEntity<List<AcessoDomain>> findAll() {
+	public ResponseEntity<List<AcessoResponseDTO>> findAll() {
 		return ResponseEntity.ok(this.acessoService.findAll());
 	}
 	
