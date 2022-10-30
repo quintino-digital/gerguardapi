@@ -2,6 +2,7 @@ package digital.quintino.gerguardapi.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +15,7 @@ public class SegurancaConfiguration {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.httpBasic().and().authorizeHttpRequests().anyRequest().authenticated().and().csrf().disable();
+		httpSecurity.httpBasic().and().authorizeHttpRequests().antMatchers(HttpMethod.GET, "/**").permitAll().anyRequest().authenticated().and().csrf().disable();
 		return httpSecurity.build();
 	}
 	
